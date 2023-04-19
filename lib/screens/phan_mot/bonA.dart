@@ -61,7 +61,14 @@ class _BonPageBAState extends State<BonPageBA> {
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             alignment: Alignment.bottomCenter,
-            child: const Text("NHẬP DÃY SỐ BẤT KỲ"),
+            child: const Text("NHẬP DÃY SỐ BẤT KỲ",style: TextStyle(fontSize: 18),),
+          ),Container(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+            alignment: Alignment.center,
+            child: const Text(
+              "(Các chuỗi tách nhau bởi dấu (-))",
+              style: TextStyle(fontSize: 14),
+            ),
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -76,7 +83,7 @@ class _BonPageBAState extends State<BonPageBA> {
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
             alignment: Alignment.bottomCenter,
-            child: const Text("HIỂN THỊ DÃY VỪA NHẬP"),
+            child: const Text("HIỂN THỊ DÃY VỪA NHẬP",style: TextStyle(fontSize: 18),),
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),

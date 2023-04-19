@@ -1,173 +1,110 @@
 import 'package:flutter/material.dart';
 
-class BonPage extends StatefulWidget {
-  const BonPage({Key? key}) : super(key: key);
+class SauPage extends StatefulWidget {
+  const SauPage({Key? key}) : super(key: key);
 
   @override
-  State<BonPage> createState() => _BonPageState();
+  State<SauPage> createState() => _SauPageState();
 }
 
-class _BonPageState extends State<BonPage> {
+class _SauPageState extends State<SauPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: BonPageA(),
-    );
+    return const Scaffold(body: SauPageA());
   }
 }
 
-class BonPageA extends StatefulWidget {
-  const BonPageA({Key? key}) : super(key: key);
+class SauPageA extends StatefulWidget {
+  const SauPageA({Key? key}) : super(key: key);
 
   @override
-  State<BonPageA> createState() => _BonPageAState();
+  State<SauPageA> createState() => _SauPageAState();
 }
 
-class _BonPageAState extends State<BonPageA> {
-  final TextEditingController _nhapso1controller = TextEditingController();
-  final TextEditingController _nhapso2controller = TextEditingController();
-  final TextEditingController _nhapso3controller = TextEditingController();
-  final TextEditingController _nhapso4controller = TextEditingController();
+class _SauPageAState extends State<SauPageA> {
+  final TextEditingController _nhapdaysocontroller = TextEditingController();
+  String total ="";
+  String total1 = "";
 
-  var total4 = " ";
-  int total5 = 0;
-
-  void _Click4() {
-    var sapxep =
-        "${_nhapso1controller.text},${_nhapso2controller.text},${_nhapso3controller.text},${_nhapso4controller.text}";
-    var max2 = int.parse(_nhapso1controller.text);
-    if (max2 < int.parse(_nhapso2controller.text)) {
-      max2 = int.parse(_nhapso2controller.text);
-    }
-    if (max2 < int.parse(_nhapso3controller.text)) {
-      max2 = int.parse(_nhapso3controller.text);
-    }
-    if (max2 < int.parse(_nhapso4controller.text)) {
-      max2 = int.parse(_nhapso4controller.text);
-    }
-    setState(() {
-      total4 = sapxep;
-      total5 = max2;
-      print(total4);
-      print(total5);
+  void _Click6() {
+    List<String> list = _nhapdaysocontroller.text.split("-");
+    setState((){
+      total=list.toString();
+      list.sort();
+      total1 = list.toString();
+      print("dãy vừa nhập vào là: "+ total);
+      print("dãy sau khi sắp xếp là: "+ list.toString());
+      print(total1);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ListView(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(20),
-            alignment: Alignment.center,
-            child: const Text(
-              'HIỂN THỊ SỐ LỚN NHẤT TRONG LIST',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        child: ListView(
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: const Text(
+            "DANH SÁCH CÁC SỐ THEO THỨ TỰ TĂNG DẦN",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          alignment: Alignment.bottomCenter,
+          child: const Text("NHẬP DÃY CÁC SỐ",style: TextStyle(fontSize: 18),),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+          alignment: Alignment.center,
+          child: const Text(
+            "(Các số tách nhau bởi dấu (-))",
+            style: TextStyle(fontSize: 14),
+          ),
+        ),
+        Container(padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
+          alignment: Alignment.center,
+          child: TextField(
+            controller: _nhapdaysocontroller,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20)
+              )
             ),
+            keyboardType: TextInputType.number,
           ),
-          const SizedBox(height: 30),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            alignment: Alignment.bottomCenter,
-            child: const Text("NHẬP SỐ THỨ 1"),
+        ),
+        const SizedBox(height: 30),
+        Container(padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: const Text("HIỂN THỊ DÃY SỐ VỪA NHẬP:",style: TextStyle(fontSize: 18),),
+        ),
+        Container(
+          padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: Text(total.toString(),style: TextStyle(fontSize: 18),),
+        ),
+        Container(padding: const EdgeInsets.all(20),
+        alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: _Click6,
+            child: const Text("SẮP XẾP"),
           ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: TextField(
-              controller: _nhapso1controller,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
+        ),
+        Container(padding: const EdgeInsets.all(20),
+        alignment: Alignment.center,
+          child: Text(total1.toString(),style: TextStyle(fontSize: 18),),
+        ),
+        Container(padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: (){Navigator.pop(context);},
+            child: const Text("HOÀN THÀNH"),
           ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            alignment: Alignment.bottomCenter,
-            child: const Text("NHẬP SỐ THỨ 2"),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: TextField(
-              controller: _nhapso2controller,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            alignment: Alignment.bottomCenter,
-            child: const Text("NHẬP SỐ THỨ 3"),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: TextField(
-              controller: _nhapso3controller,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            alignment: Alignment.bottomCenter,
-            child: const Text("NHẬP SỐ THỨ 4"),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: TextField(
-              controller: _nhapso4controller,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            alignment: Alignment.bottomCenter,
-            child: const Text("HIỂN THỊ DÃY VỪA NHẬP"),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              total4,
-              style: const TextStyle(fontSize: 18),
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              onPressed: _Click4,
-              child: const Text('TÌM SỐ LỚN NHẤT'),
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: Text(
-              total5.toString(),
-              // total4.toString(),
-              style: const TextStyle(fontSize: 20),
-            ),
-          ),
-          Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('HOÀN THÀNH'),
-              )),
-        ],
-      ),
-    );
+        ),
+      ],
+    ));
   }
 }

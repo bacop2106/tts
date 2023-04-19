@@ -62,6 +62,7 @@ class _BaPageAState extends State<BaPageA> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20))),
+              keyboardType: TextInputType.number,
             ),
           ),
           const SizedBox(height: 50),

@@ -28,7 +28,7 @@ class _HaiPageState extends State<HaiPage> {
 
   void _Click2() {
     // var textSpan = _nhapchuoicontroller.text.length;
-    List<String> list = _nhapchuoicontroller.text.split('-');
+    List<String> list = _nhapchuoicontroller.text.split(' ');
     setState(() {
       chuoi = list.toString();
       total1 = list.length;

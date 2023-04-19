@@ -4,8 +4,11 @@ import 'package:tts/screens/phan_mot/hai.dart';
 import 'package:tts/screens/phan_mot/nam.dart';
 
 import '../phan_mot/ba.dart';
+import '../phan_mot/bay.dart';
 import '../phan_mot/bon.dart';
 import '../phan_mot/mot.dart';
+import '../phan_mot/sau.dart';
+import '../phan_mot/tam.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,10 +25,10 @@ class HomeScreen extends StatelessWidget {
       //   title: Text('Các bài toán Coding',
       //       style: TextStyle(color: Colors.redAccent)),
       // ),
-
     );
   }
 }
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -34,7 +37,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,23 +46,33 @@ class _HomePageState extends State<HomePage> {
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
-            child: const Text('CÁC BÀI TOÁN CODING', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+            child: const Text(
+              'CÁC BÀI TOÁN CODING',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(
             height: 40,
           ),
           Container(
             alignment: Alignment.center,
-            child: const Text('LEVEL 1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            child: const Text('LEVEL 1',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              child: const Text('Bài 1.1', style: TextStyle(fontSize: 16),),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const MotPageA()));
+              child: const Text(
+                'Bài 1.1',
+                style: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MotPageA()));
               },
             ),
           ),
@@ -68,9 +80,13 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              child: const Text('Bài 1.2', style: TextStyle(fontSize: 16),),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HaiPageA()));
+              child: const Text(
+                'Bài 1.2',
+                style: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HaiPageA()));
               },
             ),
           ),
@@ -78,9 +94,13 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              child: const Text("Bài 1.3", style: TextStyle(fontSize: 16),),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const BaPage()));
+              child: const Text(
+                "Bài 1.3",
+                style: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BaPage()));
               },
             ),
           ),
@@ -88,9 +108,13 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              child: const Text("Bài 1.4", style: TextStyle(fontSize: 16),),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const BonPage()));
+              child: const Text(
+                "Bài 1.4",
+                style: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BonPage()));
               },
             ),
           ),
@@ -98,21 +122,65 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              child: const Text("Bài 1.4a", style: TextStyle(fontSize: 16),),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const BonPageB()));
+              child: const Text(
+                "Bài 1.4a",
+                style: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BonPageB()));
               },
             ),
           ),
-          Container(alignment: Alignment.center,
+          Container(
+            alignment: Alignment.center,
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
-              child: const Text("Bai1.5",style: TextStyle(fontSize: 16),),
-              onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const NamPage()));},
+              child: const Text(
+                "Bài 1.5",
+                style: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const NamPage()));
+              },
             ),
           ),
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(20),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SauPage()));
+              },
+              child: const Text(
+                "Bài 1.6",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(20),
+            child: ElevatedButton(
+              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => BayPage()));},
+              child: Text(
+                "BÀI 1.7",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(20),
+            child: ElevatedButton(
+              onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => TamPage()));},
+              child: Text("Bài 1.8", style: TextStyle(fontSize: 16),),
+            ),
+          )
         ],
       ),
-      );
+    );
   }
 }
