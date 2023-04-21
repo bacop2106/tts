@@ -1,83 +1,75 @@
 import 'package:flutter/material.dart';
 
-class TamPage extends StatefulWidget {
-  const TamPage({Key? key}) : super(key: key);
+class ChinPage extends StatefulWidget {
+  const ChinPage({Key? key}) : super(key: key);
 
   @override
-  State<TamPage> createState() => _TamPageState();
+  State<ChinPage> createState() => _ChinPageState();
 }
 
-class _TamPageState extends State<TamPage> {
+class _ChinPageState extends State<ChinPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: TamPageA(),
-    );
+    return const Scaffold(body: ChinPageA());
   }
 }
 
-class TamPageA extends StatefulWidget {
-  const TamPageA({Key? key}) : super(key: key);
+class ChinPageA extends StatefulWidget {
+  const ChinPageA({Key? key}) : super(key: key);
 
   @override
-  State<TamPageA> createState() => _TamPageAState();
+  State<ChinPageA> createState() => _ChinPageAState();
 }
 
-class _TamPageAState extends State<TamPageA> {
-  final TextEditingController _chuoisocontroller = TextEditingController();
+class _ChinPageAState extends State<ChinPageA> {
+  final TextEditingController _nhapchuoicontroller = TextEditingController();
   String total = "";
-  String median = "";
   int total1 = 0;
-  int median1 = 0;
 
   void _Click(){
-    List<String> list = _chuoisocontroller.text.split(" ");
+    List<String> list = _nhapchuoicontroller.text.split(" ");
     setState((){
       total = list.toString();
-      total1 = ((list.length)/2).ceil();
-      if(list.length % 2 == 0){
-         median = ((int.parse(list[total1 - 1]) + int.parse(list[total1]))/2).toString();
-      } else{
-        median = int.parse(list[total1 -1]).toString();
-      }
-      print("Dãy vừa nhập là: $total");
-      print(list.length);
+      total1 = list.length;
+      print(total);
       print(total1);
-      print(median);
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return SafeArea(
+        child: ListView(
       children: <Widget>[
         Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
           alignment: Alignment.center,
           child: const Text(
-            "TÌM TRUNG VỊ CỦA DÃY SỐ",
+            "TRẢ VỀ SỐ LƯỢNG TỪ TRONG CHUỖI",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
           alignment: Alignment.center,
           child: const Text(
-            'NHẬP DÃY SỐ',
-            style: TextStyle(fontSize: 18),
+            "NHẬP CHUỖI CẦN TÍNH",
+            style: TextStyle(fontSize: 20),
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
           alignment: Alignment.center,
-          child: const Text('(Các số tách nhau bởi dấu cách)'),
+          child: const Text(
+            "(Các kí tự tách nhau bởi dấu cách)",
+            style: TextStyle(fontSize: 14),
+          ),
         ),
         Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
           alignment: Alignment.center,
           child: TextField(
-            controller: _chuoisocontroller,
+            controller: _nhapchuoicontroller,
             decoration: InputDecoration(
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
@@ -87,8 +79,8 @@ class _TamPageAState extends State<TamPageA> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: const Text(
-            'DÃY VỪA NHẬP LÀ',
-            style: TextStyle(fontSize: 18),
+            "CHUỖI VỪA NHẬP LÀ",
+            style: TextStyle(fontSize: 20),
           ),
         ),
         Container(
@@ -104,19 +96,22 @@ class _TamPageAState extends State<TamPageA> {
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: _Click,
-            child: const Text('TÍNH TRUNG VỊ',style:  TextStyle(fontSize: 18),),
+            child: const Text(
+              "TÍNH SỐ LƯỢNG TỪ",
+              style: TextStyle(fontSize: 18),
+            ),
           ),
         ),
         Container(padding: const EdgeInsets.all(20),
-          alignment: Alignment.center,
-          child: Text(median.toString(),style: TextStyle(fontSize: 18),),
+        alignment: Alignment.center,
+          child: Text(total1.toString(), style: TextStyle(fontSize: 18),),
         ),
         Container(padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: ElevatedButton(onPressed: (){Navigator.pop(context);},
-          child: const Text('HOÀN THÀNH', style: TextStyle(fontSize: 18),),),
+          child: const Text("HOÀN THÀNH",style: TextStyle(fontSize: 18),),),
         ),
       ],
-    );
+    ));
   }
 }
