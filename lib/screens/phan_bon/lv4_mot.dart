@@ -26,11 +26,36 @@ class Level4Bai1Page extends StatefulWidget {
 class _Level4Bai1PageState extends State<Level4Bai1Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
+  String total1 = "";
+  
   void _Click(){
-    List<String> list = _nhapcontroller.text.split(" ");
+    List<String> stringNumbers = _nhapcontroller.text.split(" ");
+    List<int> numbers = stringNumbers.map((e) => int.tryParse(e.trim()) ?? 0).toList();
     setState((){
-      total = list.toString();
+      total = numbers.toString();
+      int numMoves = bubbleSort(numbers);
+      total1 = numMoves.toString();
+      print(total);
+      print(total1);
     });
+  }
+  int bubbleSort(List<int> inputList) {
+    int numSwaps = 0;
+    bool swapped;
+    do {
+      swapped = false;
+      for (int i = 1; i < inputList.length; i++) {
+        if (inputList[i - 1] > inputList[i]) {
+          // swap elements
+          int temp = inputList[i - 1];
+          inputList[i - 1] = inputList[i];
+          inputList[i] = temp;
+          numSwaps++;
+          swapped = true;
+        }
+      }
+    } while (swapped);
+    return numSwaps;
   }
 
   @override
@@ -101,8 +126,8 @@ class _Level4Bai1PageState extends State<Level4Bai1Page> {
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child: const Text(
-            "0",
+          child:  Text(
+            total1,
             style: TextStyle(fontSize: 18),
           ),
         ),
