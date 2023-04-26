@@ -34,7 +34,7 @@ class _BonPageBAState extends State<BonPageBA> {
     List<String>  list= _nhapso1controller.text.split('-');
     setState(() {
       total4 = list.toString();
-      list.sort();
+      list.sort((a,b)=>int.parse(a).compareTo(int.parse(b)));
       print(total4);
       sln = list.last;
       print(list);

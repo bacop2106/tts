@@ -15,7 +15,7 @@ class HomeHai extends StatefulWidget {
 class _HomeHaiState extends State<HomeHai> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: HomeHaiPage(),
     );
   }
@@ -35,75 +35,79 @@ class _HomeHaiPageState extends State<HomeHaiPage> {
         child: ListView(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Level2Bai1()));
+                  MaterialPageRoute(builder: (context) => const Level2Bai1()));
             },
-            child: Text(
+            child: const Text(
               "Bài 2.1",
-              style: TextStyle(fontSize: 18),
+              style:  TextStyle(fontSize: 18),
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Level2Bai2()));
+                  MaterialPageRoute(builder: (context) => const Level2Bai2()));
             },
-            child: Text(
+            child: const Text(
               "Bài 2.2",
               style: TextStyle(fontSize: 18),
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Level2Bai3()));
+                  MaterialPageRoute(builder: (context) => const Level2Bai3()));
             },
-            child: Text(
+            child: const Text(
               "Bài 2.3",
               style: TextStyle(fontSize: 18),
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Level2Bai4()));
+                  MaterialPageRoute(builder: (context) => const Level2Bai4()));
             },
-            child: Text(
+            child: const Text(
               "Bài 2.4",
               style: TextStyle(fontSize: 18),
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Level2Bai5()));
+                  MaterialPageRoute(builder: (context) => const Level2Bai5()));
             },
-            child: Text(
+            child: const Text(
               "Bài 2.5",
               style: TextStyle(fontSize: 18),
             ),
           ),
         ),
+        Container(alignment: Alignment.center,
+          padding: const EdgeInsets.all(20),
+          child: ElevatedButton(onPressed: (){Navigator.pop(context);},
+            child: const Text("HOÀN THÀNH"),),)
       ],
     ));
   }

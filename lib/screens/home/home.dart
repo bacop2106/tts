@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tts/screens/phan_ba/home_ba.dart';
+import 'package:tts/screens/phan_bon/home_bon.dart';
 import 'package:tts/screens/phan_hai/home_hai.dart';
-import 'package:tts/screens/phan_mot/bonA.dart';
-import 'package:tts/screens/phan_mot/chin.dart';
-import 'package:tts/screens/phan_mot/hai.dart';
 import 'package:tts/screens/phan_mot/home_mot.dart';
-import 'package:tts/screens/phan_mot/muoi.dart';
-import 'package:tts/screens/phan_mot/nam.dart';
-
-import '../phan_mot/ba.dart';
-import '../phan_mot/bay.dart';
-import '../phan_mot/bon.dart';
-import '../phan_mot/mot.dart';
-import '../phan_mot/sau.dart';
-import '../phan_mot/tam.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -23,12 +13,6 @@ class HomeScreen extends StatelessWidget {
       home: Scaffold(
         body: HomePage(),
       ),
-      // appBar: AppBar(
-      //   backgroundColor: Colors.black12,
-      //   elevation: 0,
-      //   title: Text('Các bài toán Coding',
-      //       style: TextStyle(color: Colors.redAccent)),
-      // ),
     );
   }
 }
@@ -60,18 +44,60 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             alignment: Alignment.center,
-            child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomeMot()));},
-              child: Text('LEVEL 1',
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeMot()));
+              },
+              child: const Text('LEVEL 1',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             ),
           ),
           const SizedBox(
             height: 30,
           ),
-          Container(padding: EdgeInsets.all(20),
-          alignment: Alignment.center,
-          child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeHai()));},
-          child: Text("LEVEL 2",style: TextStyle(fontSize: 20),),),)
+          Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeHai()));
+              },
+              child: const Text(
+                "LEVEL 2",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeBa()));
+              },
+              child: const Text(
+                "LEVEL 3",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeBon()));
+              },
+              child: const Text(
+                "LEVEL 4",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
         ],
       ),
     );

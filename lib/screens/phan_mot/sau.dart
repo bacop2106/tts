@@ -30,7 +30,7 @@ class _SauPageAState extends State<SauPageA> {
     List<String> list = _nhapdaysocontroller.text.split("-");
     setState((){
       total=list.toString();
-      list.sort();
+      list.sort((a,b)=>int.parse(a).compareTo(int.parse(b)));
       total1 = list.toString();
       print("dãy vừa nhập vào là: "+ total);
       print("dãy sau khi sắp xếp là: "+ list.toString());

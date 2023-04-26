@@ -1,44 +1,66 @@
 import 'package:flutter/material.dart';
 
-class Level2Bai1 extends StatefulWidget {
-  const Level2Bai1({Key? key}) : super(key: key);
+class Level3Bai7 extends StatefulWidget {
+  const Level3Bai7({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai1> createState() => _Level2Bai1State();
+  State<Level3Bai7> createState() => _Level3Bai7State();
 }
 
-class _Level2Bai1State extends State<Level2Bai1> {
+class _Level3Bai7State extends State<Level3Bai7> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Level2Bai1Page(),
+      body: Level3Bai7Page(),
     );
   }
 }
 
-class Level2Bai1Page extends StatefulWidget {
-  const Level2Bai1Page({Key? key}) : super(key: key);
+class Level3Bai7Page extends StatefulWidget {
+  const Level3Bai7Page({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai1Page> createState() => _Level2Bai1PageState();
+  State<Level3Bai7Page> createState() => _Level3Bai7PageState();
 }
 
-class _Level2Bai1PageState extends State<Level2Bai1Page> {
+class _Level3Bai7PageState extends State<Level3Bai7Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
   String total1 = "";
+  String total2 = "";
 
   void _Click() {
-    List<String> list = _nhapcontroller.text.split(" ");
+    List<String> list = _nhapcontroller.text.split("");
     setState(() {
+      int maxLength = 0;
+      int n = list.length;
+      int index  = -1;
+      String ans = "";
+      for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+          int isPalindrome = 1;
+          // checking if string is palindrome
+          for (int k = i; k <= j; k++) {
+            if (list[k] != list[j - (k - i)]) {
+              isPalindrome = 0;
+            }
+          }
+          if (isPalindrome == 1 && j - i + 1 > maxLength) {
+            index = i;
+            maxLength = j - i + 1;
+          }
+        }
+      }
+      // return the substring from updated index till length maxlength
+      for (int i = index; i < index + maxLength; i++) {
+        ans += list[i];
+      }
       total = list.toString();
+      total1 = ans.toString();
+      total2 = maxLength.toString();
       print(total);
-      list.sort((a,b)=>int.parse(a).compareTo(int.parse(b)));
-      print(list);
-      list.removeLast();
-      print(list);
-      total1 = list.last;
       print(total1);
+      print(total2);
     });
   }
 
@@ -51,25 +73,28 @@ class _Level2Bai1PageState extends State<Level2Bai1Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: const Text(
-            "TRẢ VỀ SỐ LỚN THỨ HAI TRONG DANH SÁCH",
+            "TRẢ VỀ ĐỘ DÀI CỦA PALINDROME DÀI NHẤT",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-          alignment: Alignment.center,
+          alignment: Alignment.bottomCenter,
           child: const Text(
-            "NHẬP DANH SÁCH CÁC SỐ",
+            "NHẬP VÀO CHUỖI KÍ TỰ",
             style: TextStyle(fontSize: 18),
           ),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
           alignment: Alignment.center,
-          child: const Text("(Các số cách nhau bởi dấu cách)"),
+          child: const Text(
+            "(Các kí tự cách nhau bởi dấu cách)",
+            style: TextStyle(fontSize: 14),
+          ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 2, 20, 20),
           alignment: Alignment.center,
           child: TextField(
             controller: _nhapcontroller,
@@ -82,7 +107,7 @@ class _Level2Bai1PageState extends State<Level2Bai1Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: const Text(
-            "DANH SÁCH VỪA NHẬP LÀ",
+            "CHUỖI KÍ TỰ VỪA NHẬP",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -97,10 +122,26 @@ class _Level2Bai1PageState extends State<Level2Bai1Page> {
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
+          child: const Text(
+            "CHUỖI PALINDMERO DÀI NHẤT",
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child:  Text(
+            total1,
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
           child: ElevatedButton(
             onPressed: _Click,
             child: const Text(
-              "TÌM SỐ LỚN THỨ 2",
+              "TÌM ĐỘ DÀI DÃY",
               style: TextStyle(fontSize: 18),
             ),
           ),
@@ -109,7 +150,7 @@ class _Level2Bai1PageState extends State<Level2Bai1Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Text(
-            total1.toString(),
+            total2,
             style: const TextStyle(fontSize: 18),
           ),
         ),

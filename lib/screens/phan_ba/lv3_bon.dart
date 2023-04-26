@@ -1,67 +1,80 @@
 import 'package:flutter/material.dart';
 
-class Level2Bai3 extends StatefulWidget {
-  const Level2Bai3({Key? key}) : super(key: key);
+class Level3Bai4 extends StatefulWidget {
+  const Level3Bai4({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai3> createState() => _Level2Bai3State();
+  State<Level3Bai4> createState() => _Level3Bai4State();
 }
 
-class _Level2Bai3State extends State<Level2Bai3> {
+class _Level3Bai4State extends State<Level3Bai4> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Level2Bai3Page(),
-    );
+    return  Scaffold(body: Level3Bai4Page(),);
   }
 }
-
-class Level2Bai3Page extends StatefulWidget {
-  const Level2Bai3Page({Key? key}) : super(key: key);
+class Level3Bai4Page extends StatefulWidget {
+  const Level3Bai4Page({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai3Page> createState() => _Level2Bai3PageState();
+  State<Level3Bai4Page> createState() => _Level3Bai4PageState();
 }
 
-class _Level2Bai3PageState extends State<Level2Bai3Page> {
+class _Level3Bai4PageState extends State<Level3Bai4Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
-  String xauchung = "";
-  String total1 = "";
+  int total1 = 0;
   String total2 = "";
 
-  void _Click(){
+  void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
-
-    setState((){
+    List<String> maxOverlapPair = getLargestOverlap(list);
+    print(maxOverlapPair);
+    setState(() {
       total = list.toString();
-      total1= list[0];
-      total2 = list[1];
-      // for(int i =0;i<total1.length;i++){
-      //   for(int j=0;j<total2.length;j++){
-      //     int a =0;
-      //     while (total1[i+a] && total2[j+a] && total1[i +a] == total2[j+a] ){
-      //       a++;
-      //     }
-      //     if(a > xauchung.length){
-      //       xauchung=total1.indexOf(i,i+a) as String;
-      //     }
-      //   }
-      // }
-      print(total);
+      total2 = maxOverlapPair.toString();
+      print(total.toString());
       print(total1);
-      print(total2);
+      print(list.toString());
     });
+  }
+  List<String> getLargestOverlap(List<String> strings) {
+    int maxOverlap = 0;
+    List<String> maxPair = ["", ""];
+
+    for (int i = 0; i < strings.length; i++) {
+      for (int j = i + 1; j < strings.length; j++) {
+        String s1 = strings[i];
+        String s2 = strings[j];
+
+        int overlap = 0;
+        for (int k = 1; k <= s1.length && k <= s2.length; k++) {
+          if (s1.substring(s1.length - k) == s2.substring(0, k)) {
+            overlap = k;
+          }
+        }
+
+        if (overlap > maxOverlap) {
+          maxOverlap = overlap;
+          maxPair[0] = s1;
+          maxPair[1] = s2;
+        }
+      }
+    }
+
+    return maxPair;
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: ListView(
+    return SafeArea(child: ListView(
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child: const Text("TRẢ VỀ CHUỖI CON DÀI NHẤT CỦA HAI CHUỖI",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+          child: const Text(
+            "TRẢ VỀ 2 CHUỖI CHỒNG CHÉO NHIỀU NHẤT",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -74,7 +87,7 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
         Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
           alignment: Alignment.center,
-          child: const Text("(Các chuỗi cách nhau bởi dấu cách)"),
+          child: const Text("(Các số cách nhau bởi dấu cách )"),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -97,9 +110,9 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child:  Text(
-            total,
-            style:  const TextStyle(fontSize: 18),
+          child: Text(
+            total.toString(),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Container(
@@ -108,7 +121,7 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
           child: ElevatedButton(
             onPressed: _Click,
             child: const Text(
-              "TÌM CHUỖI CON",
+              "TÌM CHUỖI",
               style: TextStyle(fontSize: 18),
             ),
           ),
@@ -116,9 +129,9 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child: const Text(
-            "0",
-            style: TextStyle(fontSize: 18),
+          child: Text(
+            total2.toString(),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Container(
@@ -135,6 +148,6 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
           ),
         )
       ],
-    ));
+    ),);
   }
 }

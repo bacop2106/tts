@@ -25,24 +25,30 @@ class _NamPageAState extends State<NamPageA> {
   final TextEditingController _nhapcacchuoicontroller = TextEditingController();
 
   String total1 = "";
-  String total5 = "";
+  String total2 = "";
   String total = "";
   int sln = 0;
-  int a = 0;
-  int b = 0;
+
 
   void _Click5() {
     List<String> list = _nhapcacchuoicontroller.text.split(" ");
-    // for (var i = 0; i < list.length; i++) Text(list[i]);
-    // for(var i in list) {
-    // }
 
     setState(() {
+      int min = list[0].length;
       total1 = list.toString();
-      print("dãy số nhập vào là: " + list.toString());
+      for(int i = 0; i < list.length; i++){
+        if(list[i].length < min){
+          min = list[i].length;
+          total1= list[i];
+        }
+      }
+      total= list.toString();
       print(total.toString());
+      print(min);
+      print(total1.toString());
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +87,7 @@ class _NamPageAState extends State<NamPageA> {
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
           alignment: Alignment.bottomCenter,
           child: Text(
-            total1.toString(),
+            total.toString(),
             style: const TextStyle(fontSize: 18),
           ),
         ),
@@ -97,8 +103,7 @@ class _NamPageAState extends State<NamPageA> {
           alignment: Alignment.bottomCenter,
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Text(
-            sln.toString(),
-            // total4.toString(),
+            total1.toString(),
             style: const TextStyle(fontSize: 20),
           ),
         ),

@@ -1,66 +1,53 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
-class Level2Bai5 extends StatefulWidget {
-  const Level2Bai5({Key? key}) : super(key: key);
+class Level3Bai2 extends StatefulWidget {
+  const Level3Bai2({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai5> createState() => _Level2Bai5State();
+  State<Level3Bai2> createState() => _Level3Bai2State();
 }
 
-class _Level2Bai5State extends State<Level2Bai5> {
+class _Level3Bai2State extends State<Level3Bai2> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Level2Bai5Page(),);
+    return  Scaffold(body: Level3Bai2Page(),);
   }
 }
-
-class Level2Bai5Page extends StatefulWidget {
-  const Level2Bai5Page({Key? key}) : super(key: key);
+class Level3Bai2Page extends StatefulWidget {
+  const Level3Bai2Page({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai5Page> createState() => _Level2Bai5PageState();
+  State<Level3Bai2Page> createState() => _Level3Bai2PageState();
 }
 
-class _Level2Bai5PageState extends State<Level2Bai5Page> {
+class _Level3Bai2PageState extends State<Level3Bai2Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
   int total1 = 0;
 
-
   void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
     setState(() {
-      int maxSum = int.parse(list[0]);
-      int currentSum = int.parse(list[0]);
-
-      for (int i = 1; i < list.length; i++) {
-        currentSum = currentSum + int.parse(list[i]);
-        if (int.parse(list[i]) > currentSum) {
-          currentSum = int.parse(list[i]);
-        }
-
-        if (currentSum > maxSum) {
-          maxSum = currentSum;
-        }
-      }
       total = list.toString();
-      total1= maxSum;
-      print(total);
-      print(total1.toString());
+      int n = list.toString().length;
+      print(total.toString());
+      list.sort((a,b)=>int.parse(a).compareTo(int.parse(b)));
+      total1 = int.parse(list.last)-int.parse(list[0]);
+      print(total1);
+      print(list.toString());
     });
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: ListView(children: <Widget>[Container(
-      padding: const EdgeInsets.all(20),
-      alignment: Alignment.center,
-      child: const Text(
-        "TỔNG LỚN NHẤT CỦA BẤT KÝ MẢNG CON LIỀN KỀ NÀO TRONG DANH SÁCH",
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return  SafeArea(child: ListView(children: <Widget>[
+      Container(
+        padding: const EdgeInsets.all(20),
+        alignment: Alignment.center,
+        child: const Text(
+          "TRẢ VỀ SỐ HIỆU LỚN NHẤT GIỮA HAI PHẦN TỬ BẤT KỲ",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ),
-    ),
       Container(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         alignment: Alignment.center,
@@ -107,7 +94,7 @@ class _Level2Bai5PageState extends State<Level2Bai5Page> {
         child: ElevatedButton(
           onPressed: _Click,
           child: const Text(
-            "TÍNH TỔNG",
+            "TÌM HIỆU LỚN NHẤT",
             style: TextStyle(fontSize: 18),
           ),
         ),

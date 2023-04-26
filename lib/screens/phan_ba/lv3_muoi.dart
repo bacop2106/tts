@@ -1,83 +1,69 @@
 import 'package:flutter/material.dart';
 
-class Level2Bai3 extends StatefulWidget {
-  const Level2Bai3({Key? key}) : super(key: key);
+class Level3Bai10 extends StatefulWidget {
+  const Level3Bai10({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai3> createState() => _Level2Bai3State();
+  State<Level3Bai10> createState() => _Level3Bai10State();
 }
 
-class _Level2Bai3State extends State<Level2Bai3> {
+class _Level3Bai10State extends State<Level3Bai10> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Level2Bai3Page(),
-    );
+    return const Scaffold(body: Level3Bai10Page(),);
   }
 }
-
-class Level2Bai3Page extends StatefulWidget {
-  const Level2Bai3Page({Key? key}) : super(key: key);
+class Level3Bai10Page extends StatefulWidget {
+  const Level3Bai10Page({Key? key}) : super(key: key);
 
   @override
-  State<Level2Bai3Page> createState() => _Level2Bai3PageState();
+  State<Level3Bai10Page> createState() => _Level3Bai10PageState();
 }
 
-class _Level2Bai3PageState extends State<Level2Bai3Page> {
+class _Level3Bai10PageState extends State<Level3Bai10Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
-  String xauchung = "";
   String total1 = "";
-  String total2 = "";
-
   void _Click(){
     List<String> list = _nhapcontroller.text.split(" ");
-
     setState((){
       total = list.toString();
-      total1= list[0];
-      total2 = list[1];
-      // for(int i =0;i<total1.length;i++){
-      //   for(int j=0;j<total2.length;j++){
-      //     int a =0;
-      //     while (total1[i+a] && total2[j+a] && total1[i +a] == total2[j+a] ){
-      //       a++;
-      //     }
-      //     if(a > xauchung.length){
-      //       xauchung=total1.indexOf(i,i+a) as String;
-      //     }
-      //   }
-      // }
+      list.sort((a,b)=>a.length.compareTo(b.length));
+      total1 = list.toString();
       print(total);
       print(total1);
-      print(total2);
     });
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: ListView(
+    return SafeArea(child: ListView(
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child: const Text("TRẢ VỀ CHUỖI CON DÀI NHẤT CỦA HAI CHUỖI",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+          child: const Text(
+            "SẮP XẾP CHUỖI THEO SỐ KÍ TỰ TĂNG DẦN",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-          alignment: Alignment.center,
+          alignment: Alignment.bottomCenter,
           child: const Text(
-            "NHẬP DANH SÁCH CÁC CHUỖI",
+            "NHẬP VÀO CHUỖI KÍ TỰ",
             style: TextStyle(fontSize: 18),
           ),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
           alignment: Alignment.center,
-          child: const Text("(Các chuỗi cách nhau bởi dấu cách)"),
+          child: const Text(
+            "(Các chuỗi cách nhau bởi dấu cách)",
+            style: TextStyle(fontSize: 14),
+          ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 2, 20, 20),
           alignment: Alignment.center,
           child: TextField(
             controller: _nhapcontroller,
@@ -90,16 +76,16 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: const Text(
-            "DANH SÁCH VỪA NHẬP LÀ",
+            "CHUỖI KÍ TỰ VỪA NHẬP",
             style: TextStyle(fontSize: 18),
           ),
         ),
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child:  Text(
-            total,
-            style:  const TextStyle(fontSize: 18),
+          child: Text(
+            total.toString(),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Container(
@@ -108,7 +94,7 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
           child: ElevatedButton(
             onPressed: _Click,
             child: const Text(
-              "TÌM CHUỖI CON",
+              "SẮP XẾP CHUỖI",
               style: TextStyle(fontSize: 18),
             ),
           ),
@@ -116,9 +102,9 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child: const Text(
-            "0",
-            style: TextStyle(fontSize: 18),
+          child: Text(
+            total1.toString(),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Container(
@@ -138,3 +124,4 @@ class _Level2Bai3PageState extends State<Level2Bai3Page> {
     ));
   }
 }
+
