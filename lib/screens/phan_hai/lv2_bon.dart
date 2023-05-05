@@ -35,7 +35,6 @@ class _Level2Bai4PageState extends State<Level2Bai4Page> {
 
     setState(() {
       total = list.toString();
-
       n = list.length;
       for (int i = 0; i < n; i++) {
         if (int.parse(list[i]) % 15 == 0) {

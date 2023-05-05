@@ -98,7 +98,7 @@ class _Level4Bai7PageState extends State<Level4Bai7Page> {
           alignment: Alignment.center,
           child: Text(
             total.toString(),
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Container(
@@ -117,7 +117,7 @@ class _Level4Bai7PageState extends State<Level4Bai7Page> {
           alignment: Alignment.center,
           child: Text(
             total4.toString(),
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
         Container(

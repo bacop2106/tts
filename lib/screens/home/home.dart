@@ -3,6 +3,7 @@ import 'package:tts/screens/phan_ba/home_ba.dart';
 import 'package:tts/screens/phan_bon/home_bon.dart';
 import 'package:tts/screens/phan_hai/home_hai.dart';
 import 'package:tts/screens/phan_mot/home_mot.dart';
+import 'package:tts/screens/phan_nam/home-nam.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -94,6 +95,20 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text(
                 "LEVEL 4",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeNam()));
+              },
+              child: const Text(
+                "LEVEL 5",
                 style: TextStyle(fontSize: 20),
               ),
             ),
