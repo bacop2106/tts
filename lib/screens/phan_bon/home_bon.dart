@@ -4,6 +4,7 @@ import 'package:tts/screens/phan_bon/lv4_bay.dart';
 import 'package:tts/screens/phan_bon/lv4_chin.dart';
 import 'package:tts/screens/phan_bon/lv4_hai.dart';
 import 'package:tts/screens/phan_bon/lv4_mot.dart';
+import 'package:tts/screens/phan_bon/lv4_muoi.dart';
 import 'package:tts/screens/phan_bon/lv4_sau.dart';
 
 class HomeBon extends StatefulWidget {
@@ -111,6 +112,20 @@ class _HomeBonPageState extends State<HomeBonPage> {
             },
             child: const Text(
               "Bài 4.9",
+              style:  TextStyle(fontSize: 18),
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Level4Bai10()));
+            },
+            child: const Text(
+              "Bài 4.10",
               style:  TextStyle(fontSize: 18),
             ),
           ),

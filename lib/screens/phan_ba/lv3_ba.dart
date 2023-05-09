@@ -37,20 +37,6 @@ class _Level3Bai3PageState extends State<Level3Bai3Page> {
       print(list.toString());
       int n = list.length;
       print(n);
-      // for(int i=0;i<n;i++){
-      //   int dem = 0;
-      //   // while ((A[i+1] > A[i])&&(i<n))
-      //   while ((int.parse(list[i+1]) > int.parse(list[i])) && (i<n-1)){
-      //     if (dem == 0) {
-      //      total2=("${list[i]} ${list[i + 1]}");
-      //     } else {
-      //       total2=(list[i + 1]);
-      //     }
-      //     i++;
-      //     dem++;
-      //   }
-      //   print(total2);
-      // }
     });
   }
   var max_ref= 0; // stores the LIS

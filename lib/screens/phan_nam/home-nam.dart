@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tts/screens/phan_nam/lv5_ba.dart';
+import 'package:tts/screens/phan_nam/lv5_bay.dart';
 import 'package:tts/screens/phan_nam/lv5_bon.dart';
 import 'package:tts/screens/phan_nam/lv5_hai.dart';
 import 'package:tts/screens/phan_nam/lv5_mot.dart';
@@ -110,6 +111,20 @@ class _HomeNamPageState extends State<HomeNamPage> {
           },
           child: const Text(
             "Bài 5.6",
+            style:  TextStyle(fontSize: 18),
+          ),
+        ),
+      ),
+      Container(
+        padding: const EdgeInsets.all(20),
+        alignment: Alignment.center,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Level5Bai7()));
+          },
+          child: const Text(
+            "Bài 5.7",
             style:  TextStyle(fontSize: 18),
           ),
         ),

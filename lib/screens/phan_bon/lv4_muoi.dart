@@ -1,77 +1,83 @@
 import 'package:flutter/material.dart';
 
-class Level4Bai2 extends StatefulWidget {
-  const Level4Bai2({Key? key}) : super(key: key);
+class Level4Bai10 extends StatefulWidget {
+  const Level4Bai10({Key? key}) : super(key: key);
 
   @override
-  State<Level4Bai2> createState() => _Level4Bai2State();
+  State<Level4Bai10> createState() => _Level4Bai10State();
 }
 
-class _Level4Bai2State extends State<Level4Bai2> {
+class _Level4Bai10State extends State<Level4Bai10> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Level4Bai2Page(),
-    );
+    return const Scaffold(body: Level4Bai10Page(),);
   }
 }
-
-class Level4Bai2Page extends StatefulWidget {
-  const Level4Bai2Page({Key? key}) : super(key: key);
+class Level4Bai10Page extends StatefulWidget {
+  const Level4Bai10Page({Key? key}) : super(key: key);
 
   @override
-  State<Level4Bai2Page> createState() => _Level4Bai2PageState();
+  State<Level4Bai10Page> createState() => _Level4Bai10PageState();
 }
 
-class _Level4Bai2PageState extends State<Level4Bai2Page> {
+class _Level4Bai10PageState extends State<Level4Bai10Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
-
   String total = "";
-  String total1 = "";
-  String total2 = "";
-  String total3 = "";
-
+  String total2 ="";
+  String total3 ="";
   void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
-    total2 = list.last;
-    list.removeLast();
-    List<int> numbers = list.map((e) => int.tryParse(e.trim()) ?? 0).toList();
     setState(() {
-      int n = 0;
-      total1 = list.toString();
-      n = list.length;
-      int dem = countSubsequences(numbers, int.parse(total2.toString()));
-      total3 = dem.toString();
-      print("chuỗi vừa nhập là: $total1");
-      print("giá trị đích là: $total2");
-      print("độ dài chuỗi là: $n");
-      print(dem);
+      total2 = list.last;
+      list.removeLast();
+      total = list.toString();
+      int k = int.parse(total2);
+      print(findLargestOverlap(list, k).toString());
+      print(total);
     });
   }
+  String findLargestOverlap(List<String> strings, int k) {
+    String maxOverlapPair = "";
+    int maxOverlapLength = 0;
 
-  int countSubsequences(List<int> arr, int k) {
-    List<int> dp = List.filled(k + 1, 0);
-    dp[0] = 1;
+    for (int i = 0; i < strings.length; i++) {
+      for (int j = i + 1; j < strings.length; j++) {
+        String s1 = strings[i];
+        String s2 = strings[j];
 
-    for (int i = 0; i < arr.length; i++) {
-      for (int j = k; j >= arr[i]; j--) {
-        dp[j] += dp[j - arr[i]];
+        for (int m = 0; m <= s1.length - k; m++) {
+          String substring = s1.substring(m, m + k);
+          int index = s2.indexOf(substring);
+          while (index != -1) {
+            int overlapLength = k;
+            int p1 = m + k;
+            int p2 = index + k;
+            while (p1 < s1.length && p2 < s2.length && s1[p1] == s2[p2]) {
+              overlapLength++;
+              p1++;
+              p2++;
+            }
+            if (overlapLength > maxOverlapLength) {
+              maxOverlapLength = overlapLength;
+              maxOverlapPair = "($s1, ${s2.substring(0, index)}"+ "${s1.substring(m, m + overlapLength)}, ${s2.substring(index + overlapLength)})";
+            }
+            index = s2.indexOf(substring, index + 1);
+          }
+        }
       }
     }
 
-    return dp[k];
+    return maxOverlapPair;
   }
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: ListView(
+    return SafeArea(child: ListView(
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.bottomCenter,
           child: const Text(
-            "TRẢ VỀ SỐ LƯỢNG ACCS DÃY CON RIÊNG BIỆT CỦA DANH SÁCH CÓ TỔNG BẰNG 1 GIÁ TRỊ MỤC TIÊU",
+            "TRẢ VỀ ĐỘ DÀI DÃY CON TĂNG DÀI NHẤT,KHÔNG PHẦN TỬ LK NÀO KHÁC NHAU QUÁ 1  ",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -82,7 +88,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           alignment: Alignment.center,
           child: const Text(
-            "NHẬP VÀO DÃY SỐ NGUYÊN",
+            "NHẬP VÀO CÁC SỐ",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -91,14 +97,6 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           alignment: Alignment.center,
           child: const Text(
             "(Các số cách nhau bởi dấu cách)",
-            style: TextStyle(fontSize: 14),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          alignment: Alignment.center,
-          child: const Text(
-            "(Số cuối cùng là giá trị đích)",
             style: TextStyle(fontSize: 14),
           ),
         ),
@@ -116,7 +114,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: const Text(
-            "DÃY VỪA NHẬP LÀ",
+            "CÁC SỐ VỪA NHẬP LÀ",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -124,23 +122,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Text(
-            total1,
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(20),
-          alignment: Alignment.center,
-          child: const Text(
-            "GIÁ TRỊ ĐÍCH ",
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(20),
-          alignment: Alignment.center,
-          child: Text(
-            total2.toString(),
+            "total".toString(),
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -150,7 +132,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           child: ElevatedButton(
             onPressed: _Click,
             child: const Text(
-              "TÌM SỐ CHUỖI CON",
+              "TÌM ĐỘ DÀI DÃY CON TĂNG",
               style: TextStyle(fontSize: 18),
             ),
           ),
@@ -159,7 +141,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Text(
-            total3.toString(),
+            "total1" .toString(),
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -180,3 +162,4 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
     ));
   }
 }
+

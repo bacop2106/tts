@@ -10,9 +10,10 @@ class Level5Bai5 extends StatefulWidget {
 class _Level5Bai5State extends State<Level5Bai5> {
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(body: Level5Bai5Page(),);
+    return const Scaffold(body: Level5Bai5Page(),);
   }
 }
+
 class Level5Bai5Page extends StatefulWidget {
   const Level5Bai5Page({Key? key}) : super(key: key);
 
@@ -28,13 +29,15 @@ class _Level5Bai5PageState extends State<Level5Bai5Page> {
   void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
     setState(() {
+      list.removeLast();
       total = list.toString();
       print(total);
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return   SafeArea(child: ListView(children: <Widget>[
+    return SafeArea(child: ListView(children: <Widget>[
       Container(
         padding: const EdgeInsets.all(20),
         alignment: Alignment.bottomCenter,

@@ -30,7 +30,7 @@ class _Level5Bai1PageState extends State<Level5Bai1Page> {
     setState(() {
       int n = list.length;
       total = list.toString();
-      String total1 = "";
+      String total1 = " ";
       for(int i = n-1;i>=0;i--){
         total1 += list[i];
       }

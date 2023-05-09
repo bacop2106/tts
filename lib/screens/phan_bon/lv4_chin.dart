@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Level4Bai9 extends StatefulWidget {
@@ -23,16 +25,40 @@ class Level4Bai9Page extends StatefulWidget {
 class _Level4Bai9PageState extends State<Level4Bai9Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
-  String total1 = "";
+  int total1 = 0;
   String total2 ="";
   String total3 ="";
   String total4 ="";
   void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
+    List<int> numbers = list.map((e) => int.tryParse(e.trim()) ?? 0).toList();
     setState(() {
       total = list.toString();
       print(total);
+      total1 = longestIncreasingSubsequence(numbers);
+      print(total1);
     });
+  }
+  int longestIncreasingSubsequence(List<int> arr) {
+    int n = arr.length;
+    List<int> dp = List.filled(n, 1);
+
+    for (int i = 1; i < n; i++) {
+      for (int j = 0; j < i; j++) {
+        if ((arr[i] - arr[j]).abs() <= 1 && arr[i] != arr[j]) {
+          dp[i] = max(dp[i], dp[j] + 1);
+        }
+      }
+    }
+
+    int maxLength = 0;
+    for (int i = 0; i < n; i++) {
+      if (dp[i] > maxLength) {
+        maxLength = dp[i];
+      }
+    }
+
+    return maxLength;
   }
   @override
   Widget build(BuildContext context) {
@@ -106,7 +132,7 @@ class _Level4Bai9PageState extends State<Level4Bai9Page> {
         padding: const EdgeInsets.all(20),
         alignment: Alignment.center,
         child: Text(
-          "total4".toString(),
+          total1 .toString(),
           style: TextStyle(fontSize: 18),
         ),
       ),

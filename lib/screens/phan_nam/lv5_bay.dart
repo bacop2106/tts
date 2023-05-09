@@ -1,65 +1,68 @@
 import 'package:flutter/material.dart';
 
-class Level4Bai2 extends StatefulWidget {
-  const Level4Bai2({Key? key}) : super(key: key);
+class Level5Bai7 extends StatefulWidget {
+  const Level5Bai7({Key? key}) : super(key: key);
 
   @override
-  State<Level4Bai2> createState() => _Level4Bai2State();
+  State<Level5Bai7> createState() => _Level5Bai7State();
 }
 
-class _Level4Bai2State extends State<Level4Bai2> {
+class _Level5Bai7State extends State<Level5Bai7> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Level4Bai2Page(),
+      body: Level5Bai7Page(),
     );
   }
 }
 
-class Level4Bai2Page extends StatefulWidget {
-  const Level4Bai2Page({Key? key}) : super(key: key);
+class Level5Bai7Page extends StatefulWidget {
+  const Level5Bai7Page({Key? key}) : super(key: key);
 
   @override
-  State<Level4Bai2Page> createState() => _Level4Bai2PageState();
+  State<Level5Bai7Page> createState() => _Level5Bai7PageState();
 }
 
-class _Level4Bai2PageState extends State<Level4Bai2Page> {
-  final TextEditingController _nhapcontroller = TextEditingController();
-
+class _Level5Bai7PageState extends State<Level5Bai7Page> {
+  final TextEditingController _nhapacontroller = TextEditingController();
+  final TextEditingController _nhapbcontroller = TextEditingController();
   String total = "";
   String total1 = "";
   String total2 = "";
   String total3 = "";
 
   void _Click() {
-    List<String> list = _nhapcontroller.text.split(" ");
-    total2 = list.last;
-    list.removeLast();
-    List<int> numbers = list.map((e) => int.tryParse(e.trim()) ?? 0).toList();
+    List<String> list = _nhapbcontroller.text.split(" ");
+    List<String> keys = _nhapacontroller.text.split(" ");
+
     setState(() {
-      int n = 0;
-      total1 = list.toString();
-      n = list.length;
-      int dem = countSubsequences(numbers, int.parse(total2.toString()));
-      total3 = dem.toString();
-      print("chuỗi vừa nhập là: $total1");
-      print("giá trị đích là: $total2");
-      print("độ dài chuỗi là: $n");
-      print(dem);
+      total = keys.toString();
+      total3 = list.toString();
+       // final collections = list.toString();
+      final collections = [
+        {'a': 1, 'b': 1, 'c': 2, 'd': 4, 'e': 5},
+        {'a': 2, 'b': 1, 'c': 5, 'd': 4, 'e': 5},
+        {'d': 4, 'e': 5, 'a': 22, 'b': 11, 'c': 51},
+      ];
+      final result = sortObjectsByKeyOrder(keys, collections);
+      total2 = result.toString();
+      print(result);
+      print(total);
+      print(collections);
+      total1 = collections.toString();
+      print(total2);
     });
   }
 
-  int countSubsequences(List<int> arr, int k) {
-    List<int> dp = List.filled(k + 1, 0);
-    dp[0] = 1;
-
-    for (int i = 0; i < arr.length; i++) {
-      for (int j = k; j >= arr[i]; j--) {
-        dp[j] += dp[j - arr[i]];
-      }
-    }
-
-    return dp[k];
+  List<Map<String, dynamic>> sortObjectsByKeyOrder(
+      List<String> keys, List<Map<String, dynamic>> collections) {
+    return collections.map((collection) {
+      var newObj = <String, dynamic>{};
+      keys.forEach((key) {
+        newObj[key] = collection[key];
+      });
+      return newObj;
+    }).toList();
   }
 
   @override
@@ -71,7 +74,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.bottomCenter,
           child: const Text(
-            "TRẢ VỀ SỐ LƯỢNG ACCS DÃY CON RIÊNG BIỆT CỦA DANH SÁCH CÓ TỔNG BẰNG 1 GIÁ TRỊ MỤC TIÊU",
+            "TRẢ RA MẢNG CÁC OBJECT THEO THỨ TỰ MẢNG CÁC KEY",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -82,7 +85,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           alignment: Alignment.center,
           child: const Text(
-            "NHẬP VÀO DÃY SỐ NGUYÊN",
+            "NHẬP VÀO KEYS",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -90,15 +93,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           alignment: Alignment.center,
           child: const Text(
-            "(Các số cách nhau bởi dấu cách)",
-            style: TextStyle(fontSize: 14),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          alignment: Alignment.center,
-          child: const Text(
-            "(Số cuối cùng là giá trị đích)",
+            "(Các KEY cách nhau bởi dấu cách)",
             style: TextStyle(fontSize: 14),
           ),
         ),
@@ -106,7 +101,33 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: TextField(
-            controller: _nhapcontroller,
+            controller: _nhapacontroller,
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20))),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          alignment: Alignment.center,
+          child: const Text(
+            "NHẬP VÀO OBJECT",
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          alignment: Alignment.center,
+          child: const Text(
+            "(Các OBJECT cách nhau bởi dấu cách)",
+            style: TextStyle(fontSize: 14),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: TextField(
+            controller: _nhapbcontroller,
             decoration: InputDecoration(
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20))),
@@ -116,7 +137,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: const Text(
-            "DÃY VỪA NHẬP LÀ",
+            "MẢNG VỪA NHẬP LÀ",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -124,23 +145,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Text(
-            total1,
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(20),
-          alignment: Alignment.center,
-          child: const Text(
-            "GIÁ TRỊ ĐÍCH ",
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(20),
-          alignment: Alignment.center,
-          child: Text(
-            total2.toString(),
+            "Key là: $total\n \n OBJECT là: $total1",
             style: TextStyle(fontSize: 18),
           ),
         ),
@@ -150,7 +155,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           child: ElevatedButton(
             onPressed: _Click,
             child: const Text(
-              "TÌM SỐ CHUỖI CON",
+              "OBIECT CHỨA DỮ LIỆU MỚI",
               style: TextStyle(fontSize: 18),
             ),
           ),
@@ -159,7 +164,7 @@ class _Level4Bai2PageState extends State<Level4Bai2Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Text(
-            total3.toString(),
+            total2.toString(),
             style: TextStyle(fontSize: 18),
           ),
         ),

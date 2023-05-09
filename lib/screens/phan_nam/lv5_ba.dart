@@ -29,11 +29,23 @@ class _Level5Bai3PageState extends State<Level5Bai3Page> {
     List<String> list = _nhapcontroller.text.split(" ");
     setState(() {
       total = list.toString();
-      List<String> xoalap = list.toSet().toList();
-      total2 = xoalap.toString();
+      // List<String> xoalap = list.toSet().toList();
+      total2 = removeDuplicates(list).toString();
       print(total);
       print(total2);
     });
+  }
+  List removeDuplicates(List arr) {
+    for (int i = 0; i < arr.length; i++) {
+      for (int j = i + 1; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+          arr.removeAt(j);
+          j--;
+        }
+      }
+    }
+
+    return arr;
   }
   @override
   Widget build(BuildContext context) {

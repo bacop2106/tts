@@ -22,10 +22,40 @@ class Level4Bai3Page extends StatefulWidget {
 
 class _Level4Bai3PageState extends State<Level4Bai3Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
+  String total = "";
+  String total2 = "";
+  String total3 = "";
+
   void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
     setState(() {
+      total = list.toString();
+      print(findLongestSubstring(list));
+      total2 =findLongestSubstring(list).toString();
+
     });
+  }
+  int findLongestSubstring(List<String> strings) {
+    if (strings.isEmpty) {
+      return 0;
+    }
+
+    String longestSubstring = "";
+    String shortestString =
+    strings.reduce((value, element) => value.length < element.length ? value : element);
+
+    for (int i = 0; i < shortestString.length; i++) {
+      for (int j = i + 1; j <= shortestString.length; j++) {
+        String substring = shortestString.substring(i, j);
+        if (strings.every((s) => s.contains(substring))) {
+          if (substring.length > longestSubstring.length) {
+            longestSubstring = substring;
+          }
+        }
+      }
+    }
+
+    return longestSubstring.length;
   }
   @override
   Widget build(BuildContext context) {
@@ -79,17 +109,9 @@ class _Level4Bai3PageState extends State<Level4Bai3Page> {
         Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
-          child: const Text(
-            "total1",
-            style:  TextStyle(fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(20),
-          alignment: Alignment.center,
           child: Text(
-            "total2".toString(),
-            style: const TextStyle(fontSize: 18),
+            total.toString(),
+            style:  TextStyle(fontSize: 18),
           ),
         ),
         Container(
@@ -107,7 +129,7 @@ class _Level4Bai3PageState extends State<Level4Bai3Page> {
           padding: const EdgeInsets.all(20),
           alignment: Alignment.center,
           child: Text(
-            "total3".toString(),
+            total2.toString(),
             style: const TextStyle(fontSize: 18),
           ),
         ),

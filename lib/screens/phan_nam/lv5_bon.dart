@@ -24,16 +24,30 @@ class _Level5Bai4PageState extends State<Level5Bai4Page> {
   final TextEditingController _nhapcontroller = TextEditingController();
   String total = "";
   String total2 = "";
+  int n = 0;
 
   void _Click() {
     List<String> list = _nhapcontroller.text.split(" ");
     setState(() {
       total = list.toString();
-      List<String> xoalap = list.toSet().toList();
-      total2 = xoalap.toString();
       print(total);
+      n= list.length;
+      total2 = removeDuplicates(list).toString();
       print(total2);
+      print(n);
     });
+  }
+  List removeDuplicates(List arr) {
+    for (int i = 0; i < arr.length; i++) {
+      for (int j = i + 1; j < arr.length; j++) {
+        if (arr[i] == arr[j]) {
+          arr.removeAt(j);
+          j--;
+        }
+      }
+    }
+
+    return arr;
   }
   @override
   Widget build(BuildContext context) {
